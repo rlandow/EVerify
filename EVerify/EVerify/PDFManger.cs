@@ -31,8 +31,10 @@ namespace EVerify
         {
             SqlDataReader dr = dataacess.GetPDF(hourlyApplicationID);
 
+            if (dr.HasRows == false ) return "/EVerify/I9Template.pdf";
             Page1 page1 = Page1FromDataReader(dr);
 
+            
             string src = HttpContext.Current.Server.MapPath("/EVerify/I9Template.PDF");
             string dest = HttpContext.Current.Server.MapPath("/EVerify/" + page1.LastName + ".pdf");
 
